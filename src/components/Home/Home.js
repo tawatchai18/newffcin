@@ -85,12 +85,7 @@ class Home extends Component {
     const da = sessionStorage.getItem('userData')
     const dataJson = JSON.parse(da)
     const name = dataJson.user.name
-    // const { error, isLoaded, items } = this.state;
-    // if (error) {
-    //   return <div>Error: {error.message}</div>;
-    // } else if (!isLoaded) {
-    //   return <div>Loading...</div>;
-    // } else {
+    
     return (
       <Layout>
         <Header style={{ background: '#fff', height: 80 }}>

@@ -54,17 +54,7 @@ class Login extends Component {
         if (responseJson.user) {
           sessionStorage.setItem('userData', JSON.stringify(responseJson));
           this.setState({ redirectToReferrer: true });
-          alert('เข้าสู่ระบบเรียบร้อย')
         }
-        // else if(status == 204)
-        // {
-        //   alert('fkfkmg')
-        // }
-  
-        // else if(status == 401)
-        // {
-        //   alert('fkfmgmg')
-        // }
       });
     }
   }
