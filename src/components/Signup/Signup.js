@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { SignupData, Data } from '../../services/PostData';
 import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 import { Redirect } from 'react-router-dom';
 import './Signup.css';
 import ReCAPTCHA from "react-google-recaptcha";
 import { Label, Input, Button, Modal, ModalHeader, ModalBody, ModalFooter, CardFooter, Col, Media } from 'reactstrap';
 // import { ValidationForm, TextInput, } from 'react-bootstrap4-form-validation';
-import { AvForm, AvGroup, AvField, AvInput, AvFeedback, AvRadioGroup, AvRadio } from 'availity-reactstrap-validation';
+import { AvForm, AvGroup, AvField } from 'availity-reactstrap-validation';
 import validator from 'validator'
 import RCG from 'react-captcha-generator';
 
@@ -17,7 +18,7 @@ var data = {
     "confirmpassword": "",
     "mail": "",
     "phoneNo": "",
-    "role": "ORG",
+    "roles": ["ADMIN"],
     "timestamp": new Date(),
     "captcha": ""
 }
@@ -61,7 +62,7 @@ class Signup extends Component {
     }
     Change(value) {
         console.log("Captcha value:", value);
-      }
+    }
 
     times = (e) => {
         const users = this.state.users;
@@ -164,17 +165,22 @@ class Signup extends Component {
     }
 
     render() {
-        if (this.state.redirectToReferrer || sessionStorage.getItem('userData')) {
+        // if (this.state.redirectToReferrer || sessionStorage.getItem('userData')) {
+        //     return (<Redirect to={'/login'} />)
+        // }
+        if (this.state.redirectToReferrer) {
             return (<Redirect to={'/login'} />)
         }
         return (
-            <div className="off-canvas-wrapper">
+            <div className="off-canvas-wrapper" style={{fontFamily: 'Kanit'}}>
                 <Header />
                 <div style={{ backgroundColor: '', width: '75%', marginLeft: 180, }}>
                     <div style={{ width: '100%', marginTop: 70, }}>
-                        <h1>สมัครหน่วยงานใหม่</h1>
+                        <center>
+                            <h1>สมัครหน่วยงานใหม่</h1>
+                        </center>
                     </div>
-                    <AvForm style={{ marginLeft: 60, }} onValidSubmit={this.handleValidSubmit} onInvalidSubmit={this.handleInvalidSubmit}>
+                    <AvForm style={{ marginLeft: 60, fontSize: 18 }} onValidSubmit={this.handleValidSubmit} onInvalidSubmit={this.handleInvalidSubmit}>
                         <AvGroup row style={{ marginTop: 70 }}>
                             <Label for="exampleagName" sm={2}>หน่วยงาน</Label>
                             <Col xs="6">
@@ -183,8 +189,8 @@ class Signup extends Component {
                                 }} />
                             </Col>
                             {/* <Col xs="2">
-                            <Button color="primary" href="/creat">+ เพิ่มหน่วยงาน</Button>
-                        </Col> */}
+                                <Button color="primary" href="/creat">+ เพิ่มหน่วยงาน</Button>
+                            </Col> */}
                         </AvGroup>
                         <AvGroup row>
                             <Label for="exampleagdisplayName" sm={2}>ชื่อย่อหน่วยงาน</Label>
@@ -197,23 +203,12 @@ class Signup extends Component {
                             </Col>
                         </AvGroup>
                         <AvGroup row>
-                            <Label for="exampleType" sm={2}>ระดับผู้ใช้งาน</Label>
-                            <Col xs="6">
-                                <AvField name='users[0].type' placeholder="Admin / User" onChange={this.type} errorMessage="กรุณากรอกระดับผู้ใช้งาน "
-                                    validate={{
-                                        required: { value: true },
-                                        pattern: { value: '^[Admin,User]+$' }
-                                    }}
-                                />
-                            </Col>
-                        </AvGroup>
-                        <AvGroup row>
                             <Label for="exampleName" sm={2}>ชื่อผู้ใช้</Label>
                             <Col xs="6">
                                 <AvField name='users[0].name' placeholder="ชื่อผู้ใช้" onChange={this.name} errorMessage="กรุณากรอกชื่อหน่วยงาน *ต้องมี 3 ตัวขึ้นไป"
                                     validate={{
                                         required: { value: true },
-                                        pattern: { value: '^[ก-ฮ,a-z,0-9]+$' },
+                                        pattern: { value: '^[ก-เ,a-z,0-9]+$' },
                                         minLength: { value: 3 },
                                         maxLength: { value: 16 }
                                     }}
@@ -270,14 +265,12 @@ class Signup extends Component {
                             <Col xs="6">
                                 <form onChange={this.captcha} >
                                     <RCG result={this.result} />
-                                    <AvField type='text' name="captcha" placeholder="พิมพ์ตามภาพ" className={'xxx'} ref={ref => this.captchaEnter = ref} required />
+                                    <AvField type='text' name="captcha" placeholder="พิมพ์ตามภาพ" className={'xxx'} ref={ref => this.captchaEnter = ref} errorMessage="กรุณาพิมพ์ตามภาพ" validate={{
+                                        required: { value: true },
+                                        minLength: { value: 5 },
+                                        maxLength: { value: 5 }
+                                    }} />
                                 </form>
-                            </Col>
-                        </AvGroup>
-                        <AvGroup row>
-                            <Label for="exampleagEncy" sm={2}>พิมพ์ตามภาพ</Label>
-                            <Col xs="6">
-                            <ReCAPTCHA  sitekey="xxxxxxx" onChange={this.Change}/>
                             </Col>
                         </AvGroup>
                         <div className="small-6 large-centered columns">
@@ -295,6 +288,9 @@ class Signup extends Component {
                             </Modal>
                         </div>
                     </AvForm>
+                </div>
+                <div style={{ marginTop: 200 }}>
+                    <Footer />
                 </div>
             </div>
         )

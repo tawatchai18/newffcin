@@ -8,6 +8,7 @@ import Signup from '././components/Signup/Signup';
 import Creat from '././components/creat/creat';
 import Map from '././components/map/map';
 import Export from '././components/Export/export';
+import Static from '././components/static/static'
 import User from '././components/User/User';
 import NotFound from '././components/NotFound/NotFound';
 
@@ -21,6 +22,7 @@ const Routes = () => (
           <Route path="/Signup" component={Signup}/>
           <Route path="/creat" component={Creat}/>
           <Route path="/map" component={Map}/>
+          <Route path="/static" component={Static}/>
           <Route path="/export" component={Export}/>
           <Route path="/user" component={User}/>
           <Route path="*" component={NotFound}/>

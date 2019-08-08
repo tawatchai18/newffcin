@@ -27,8 +27,9 @@ class Header extends Component {
     return (
       <div className="app flex-row align-items-center">
         <div className="callout primary" id="Header" >
-          <div className="row column" style={{ marginLeft: 230 }} >
-            <h1>Family Folder Collector | (FFC)</h1>
+          <div className="row column" style={{ marginLeft: 80 }} >
+          <img style={{height:80, width:100}} src="LOGO_White.png"></img>
+            {/* <h style={{marginTop:10,fontSize: 20, marginLeft:50, color: '#71ccae' }}>Family Folder Collector | (FFC)</h> */}
           </div>
         </div>
       </div>
