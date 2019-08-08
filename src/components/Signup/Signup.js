@@ -4,11 +4,11 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import { Redirect } from 'react-router-dom';
 import './Signup.css';
-import ReCAPTCHA from "react-google-recaptcha";
+// import ReCAPTCHA from "react-google-recaptcha";
 import { Label, Input, Button, Modal, ModalHeader, ModalBody, ModalFooter, CardFooter, Col, Media } from 'reactstrap';
-// import { ValidationForm, TextInput, } from 'react-bootstrap4-form-validation';
 import { AvForm, AvGroup, AvField } from 'availity-reactstrap-validation';
 import validator from 'validator'
+import ReCAPTCHA from "react-google-recaptcha";
 import RCG from 'react-captcha-generator';
 
 var data = {
@@ -45,8 +45,9 @@ class Signup extends Component {
         this.mail = this.mail.bind(this);
         this.phoneNo = this.phoneNo.bind(this);
         this.type = this.type.bind(this);
-        this.captcha = this.captcha.bind(this);
+        // this.captcha = this.captcha.bind(this);
         this.Change = this.Change.bind(this);
+        this.recapchaLoad = this.recapchaLoad.bind(this);
     };
 
     handleValidSubmit() {
@@ -112,13 +113,13 @@ class Signup extends Component {
         });
     };
 
-    captcha = (e) => {
-        const users = this.state.users;
-        users[0].captcha = e.target.value;
-        this.setState({
-            users
-        });
-    };
+    // captcha = (e) => {
+    //     const users = this.state.users;
+    //     users[0].captcha = e.target.value;
+    //     this.setState({
+    //         users
+    //     });
+    // };
 
     name = (e) => {
         const users = this.state.users;
@@ -164,6 +165,10 @@ class Signup extends Component {
         console.log(this.state.captcha, this.captchaEnter.value, this.state.captcha === this.captchaEnter.value)
     }
 
+    recapchaLoad() {
+        console.log("capcha successfully loaded");
+    }
+
     render() {
         // if (this.state.redirectToReferrer || sessionStorage.getItem('userData')) {
         //     return (<Redirect to={'/login'} />)
@@ -172,7 +177,7 @@ class Signup extends Component {
             return (<Redirect to={'/login'} />)
         }
         return (
-            <div className="off-canvas-wrapper" style={{fontFamily: 'Kanit'}}>
+            <div className="off-canvas-wrapper" style={{ fontFamily: 'Kanit' }}>
                 <Header />
                 <div style={{ backgroundColor: '', width: '75%', marginLeft: 180, }}>
                     <div style={{ width: '100%', marginTop: 70, }}>
@@ -260,7 +265,7 @@ class Signup extends Component {
                                 }} />
                             </Col>
                         </AvGroup>
-                        <AvGroup row>
+                        {/* <AvGroup row>
                             <Label for="exampleagEncy" sm={2}>พิมพ์ตามภาพ</Label>
                             <Col xs="6">
                                 <form onChange={this.captcha} >
@@ -271,6 +276,24 @@ class Signup extends Component {
                                         maxLength: { value: 5 }
                                     }} />
                                 </form>
+                            </Col>
+                        </AvGroup> */}
+                        <AvGroup row>
+                            <Label for="exampleagEncy" sm={2}>พิมพ์ตามภาพ</Label>
+                            <Col xs="6">
+                                {/* <form onChange={this.captcha} >
+                                    <RCG result={this.result} />
+                                    <AvField type='text' name="captcha" placeholder="พิมพ์ตามภาพ" className={'xxx'} ref={ref => this.captchaEnter = ref} errorMessage="กรุณาพิมพ์ตามภาพ" validate={{
+                                        required: { value: true },
+                                        minLength: { value: 5 },
+                                        maxLength: { value: 5 }
+                                    }} />
+                                </form> */}
+                                <ReCAPTCHA
+                                    sitekey="6LeZ-7EUAAAAAFqiLXPsK4AamrLvjC_1ykUV70z2"
+                                    render="explicit"
+                                    onloadCallback={this.recapchaLoad}
+                                />
                             </Col>
                         </AvGroup>
                         <div className="small-6 large-centered columns">

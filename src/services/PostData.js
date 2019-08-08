@@ -2,7 +2,6 @@
 import { Base64 } from 'js-base64';
 
 const API = 'https://ffcmaekawtom.herokuapp.com/v1'
-// const API = 'https://ffc-api-test.herokuapp.com/v1'
 
 export function PostData(type, userData, id) {
   return new Promise((resolve, reject) => {
@@ -19,7 +18,7 @@ export function PostData(type, userData, id) {
         resolve(res);
       })
       .catch((error) => {
-        reject(error);
+        reject('Username or password is incorrect');
       });
 
   });
@@ -55,15 +54,16 @@ export function Data() {
   });
 }
 
-export function CreatData(id) {
-  console.log(id, 'createDate')
+//show user หน้า users
+export function CreatData(id, token) {
+  console.log(token,'ppppl;k');
   return new Promise((resolve, reject) => {
-    // fetch( API + `/org/5c875ec69522b200046a40fb/user`, {
     fetch(API + `/org/${id}/user`, {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer rCHUiQSGQNAz0iCog4WXz',
+        // 'Authorization': 'Bearer 0lI41NtRAJTIgjjYHnGZHoyUKH92QAy9AW9z0lBhJJSrBA9QYAw4xT0sC2BxMRhd',
+        "Authorization": `Bearer ${token}`,
       }),
     })
       .then((response) => response.json())
@@ -76,3 +76,26 @@ export function CreatData(id) {
   });
 }
 
+//สมัคร user ใหม่
+export function CreatUser(id, token, userData) {
+  console.log(id,'opopopop');
+  console.log(token, '===12')
+  return new Promise((resolve, reject) => {
+    fetch(API + `/org/${id}/user`, {
+      method: 'POST',
+      headers: new Headers({
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+        // "Authorization": 'Bearer 0lI41NtRAJTIgjjYHnGZHoyUKH92QAy9AW9z0lBhJJSrBA9QYAw4xT0sC2BxMRhd',
+      }),
+      body: JSON.stringify(userData),
+    })
+      .then((response) => response.json())
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+}

@@ -192,7 +192,6 @@ class Map extends Component {
             </Layout>
         );
     }
-
 }
 
 export default Map;
