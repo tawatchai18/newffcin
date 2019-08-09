@@ -1,7 +1,8 @@
 {
-  "name": "deploy",
+  "name": "react-welcome",
   "version": "0.1.0",
   "private": true,
+  "homepages": "https://patrykomiotek.io/newffcin",
   "dependencies": {
     "antd": "^3.13.6",
     "availity-reactstrap-validation": "^2.3.3",
@@ -32,15 +33,17 @@
     "react-thailand-address-typeahead": "^1.0.1",
     "react-timeago": "^3.4.3",
     "reactstrap": "^6.5.0",
-    "serve": "^11.1.0",
     "validator": "^10.9.0"
   },
   "scripts": {
-    "dev": "react-scripts start",
-  "start": "serve -s build",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom --setupTestFrameworkScriptFile=raf/polyfill",
-    "eject": "react-scripts eject",
-    "heroku-postbuild": "npm run build"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.1.1"
   }
 }
