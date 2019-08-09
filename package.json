@@ -1,8 +1,8 @@
 {
-  "name": "react-welcome",
+  "name": "newffcin",
   "version": "0.1.0",
   "private": true,
-  "homepages": "https://patrykomiotek.io/newffcin",
+  "homepage": "https://tawatchai18.github.io/newffcin",
   "dependencies": {
     "antd": "^3.13.6",
     "availity-reactstrap-validation": "^2.3.3",
@@ -27,7 +27,7 @@
     "react-linkify": "^0.2.1",
     "react-recaptcha-v3": "^1.1.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.14",
+    "react-scripts": "^2.1.8",
     "react-select": "^2.3.0",
     "react-thai-address": "^1.0.2",
     "react-thailand-address-typeahead": "^1.0.1",
@@ -40,10 +40,16 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom --setupTestFrameworkScriptFile=raf/polyfill",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d build ",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
     "gh-pages": "^2.1.1"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
