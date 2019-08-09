@@ -45,9 +45,9 @@ class Signup extends Component {
         this.mail = this.mail.bind(this);
         this.phoneNo = this.phoneNo.bind(this);
         this.type = this.type.bind(this);
-        // this.captcha = this.captcha.bind(this);
+        this.captcha = this.captcha.bind(this);
         this.Change = this.Change.bind(this);
-        this.recapchaLoad = this.recapchaLoad.bind(this);
+        // this.recapchaLoad = this.recapchaLoad.bind(this);
     };
 
     handleValidSubmit() {
@@ -113,13 +113,13 @@ class Signup extends Component {
         });
     };
 
-    // captcha = (e) => {
-    //     const users = this.state.users;
-    //     users[0].captcha = e.target.value;
-    //     this.setState({
-    //         users
-    //     });
-    // };
+    captcha = (e) => {
+        const users = this.state.users;
+        users[0].captcha = e.target.value;
+        this.setState({
+            users
+        });
+    };
 
     name = (e) => {
         const users = this.state.users;
@@ -165,9 +165,9 @@ class Signup extends Component {
         console.log(this.state.captcha, this.captchaEnter.value, this.state.captcha === this.captchaEnter.value)
     }
 
-    recapchaLoad() {
-        console.log("capcha successfully loaded");
-    }
+    // recapchaLoad() {
+    //     console.log("capcha successfully loaded");
+    // }
 
     render() {
         // if (this.state.redirectToReferrer || sessionStorage.getItem('userData')) {
@@ -281,19 +281,19 @@ class Signup extends Component {
                         <AvGroup row>
                             <Label for="exampleagEncy" sm={2}>พิมพ์ตามภาพ</Label>
                             <Col xs="6">
-                                {/* <form onChange={this.captcha} >
+                                <form onChange={this.captcha} >
                                     <RCG result={this.result} />
                                     <AvField type='text' name="captcha" placeholder="พิมพ์ตามภาพ" className={'xxx'} ref={ref => this.captchaEnter = ref} errorMessage="กรุณาพิมพ์ตามภาพ" validate={{
                                         required: { value: true },
                                         minLength: { value: 5 },
                                         maxLength: { value: 5 }
                                     }} />
-                                </form> */}
-                                <ReCAPTCHA
+                                </form>
+                                {/* <ReCAPTCHA
                                     sitekey="6LeZ-7EUAAAAAFqiLXPsK4AamrLvjC_1ykUV70z2"
                                     render="explicit"
                                     onloadCallback={this.recapchaLoad}
-                                />
+                                /> */}
                             </Col>
                         </AvGroup>
                         <div className="small-6 large-centered columns">
