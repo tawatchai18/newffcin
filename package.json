@@ -36,10 +36,10 @@
     "validator": "^10.9.0"
   },
   "scripts": {
-    "dev": "react-app-rewired start",
-    "start": "serve -s build",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test --env=jsdom",
+    "dev": "react-scripts start",
+  "start": "serve -s build",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom --setupTestFrameworkScriptFile=raf/polyfill",
     "eject": "react-scripts eject",
     "heroku-postbuild": "npm run build"
   }
