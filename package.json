@@ -2,8 +2,9 @@
   "name": "newffcin",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://tawatchai18.github.io/newffcin",
+  "homepage": "http://tawatchai18.github.io/newffcin",
   "dependencies": {
+    "gh-pages": "^2.1.1",
     "antd": "^3.13.6",
     "availity-reactstrap-validation": "^2.3.3",
     "base-64": "^0.1.0",
@@ -42,9 +43,6 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build ",
     "eject": "react-scripts eject"
-  },
-  "devDependencies": {
-    "gh-pages": "^2.1.1"
   },
   "browserslist": [
     ">0.2%",
